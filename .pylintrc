@@ -1,0 +1,29 @@
+[MASTER]
+ignore=venv
+
+[MESSAGES CONTROL]
+disable=
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring
+    C0116,  # missing-function-docstring
+    R0903,  # too-few-public-methods
+    R0801,  # duplicate-code (not useful in tiny projects)
+
+[FORMAT]
+max-line-length=100
+
+[DESIGN]
+max-args=6
+max-attributes=10
+max-parents=7
+max-public-methods=20
+
+[REPORTS]
+score=no
+
+[TYPECHECK]
+# Allow tests to import freely without installed package structure initially
+ignored-modules=
+
+[SIMILARITIES]
+min-similarity-lines=8

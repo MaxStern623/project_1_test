@@ -1,0 +1,3 @@
+# This calculator has no runtime dependencies.
+# All dependencies are development tools listed in requirements-dev.txt
+# If you need to add runtime dependencies, list them here.

@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "defensive-programming-calculator"
+version = "1.0.0"
+description = "A1 Defensive Programming Calculator - Complete and practice implementations"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["defensive-programming", "calculator", "education", "error-handling"]
+
+[project.scripts]
+calc-answers = "answers.src.main:main"
+calc-practice = "practice.src.main:main"
+
+[tool.setuptools]
+packages = ["answers", "answers.src", "answers.src.operations", "practice", "practice.src", "practice.src.operations"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+preview = true
+
+[tool.isort]
+profile = "black"
+line_length = 100
+combine_as_imports = true
+
+[tool.flake8]
+max-line-length = 100
+exclude = [
+  ".venv",
+  "venv",
+  ".git",
+  "__pycache__",
+  "build",
+  "dist",
+]
+extend-ignore = [
+  "E203",  # Black compatibility (whitespace before :)
+  "W503"   # Line-break before binary operator (Black-compatible style)
+]
+per-file-ignores = [
+  "__init__.py:F401",  # allow package re-exports
+]
+# Plugins installed (bugbear/comprehensions) will contribute additional checks automatically.
+
+[tool.pylint]
+py-version = "3.10"
+ignore-paths = ["answers/tests/", "practice/tests/"]  # treat tests as leafs
+max-line-length = 100
+good-names = ["i","j","k","x","y","z","df","id"]
+min-similarity-lines = 6
+# Gradual tuning example:
+# disable = ["missing-module-docstring","missing-class-docstring","missing-function-docstring"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_any_generics = true
+no_implicit_optional = true
+check_untyped_defs = true
+namespace_packages = true
+exclude = [
+  "tests/",
+]

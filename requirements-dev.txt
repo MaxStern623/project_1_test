@@ -1,0 +1,15 @@
+black==24.10.0
+isort==5.13.2
+flake8==7.3.0
+pylint==3.3.8
+pytest>=8.2
+pytest-cov>=5.0
+pytest-pylint>=0.21
+debugpy>=1.8
+pre-commit>=3.7
+mypy>=1.10
+# Flake8 plugins (installed to match config behavior)
+flake8-bugbear>=24.2
+flake8-comprehensions>=3.14
+bandit>=1.7
+pip-audit>=2.7

@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug calc CLI (add)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/main.py",
+      "console": "integratedTerminal",
+      "args": [
+        "add",
+        "2",
+        "3"
+      ],
+      "justMyCode": true
+    },
+    {
+      "name": "Debug calc CLI (divide-by-zero)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/main.py",
+      "console": "integratedTerminal",
+      "args": [
+        "divide",
+        "1",
+        "0"
+      ],
+      "justMyCode": true
+    },
+    {
+      "name": "Pytest: Debug tests (-k prompt)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "-q",
+        "tests",
+        "-k",
+        "${input:testFilter}"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ],
+  "inputs": [
+    {
+      "id": "testFilter",
+      "type": "promptString",
+      "description": "Pytest -k expression (optional)",
+      "default": ""
+    }
+  ]
+}
