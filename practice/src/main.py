@@ -20,7 +20,6 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
-from typing import Callable
 
 # TODO: Import custom exceptions
 # HINT: from src.exceptions import CalculatorError, DivisionByZeroError, InvalidInputError
@@ -124,7 +123,8 @@ def main(argv: list[str] | None = None) -> int:
     # TODO: Handle unexpected exceptions with exit code 4
 
     try:
-        args = argparse.Namespace()  # TODO: Replace with actual argument parsing
+        # TODO: Replace with actual argument parsing
+        # args = argparse.Namespace() 
 
         # TODO: Add your implementation here
 

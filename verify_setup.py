@@ -4,9 +4,8 @@ Verification script for the updated defensive programming calculator project.
 This script checks that all configurations are properly updated and working.
 """
 
-import os
-import sys
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -75,7 +74,10 @@ def test_functionality():
 
     tests = [
         (["python3", "-m", "answers.src.main", "add", "2", "3"], "Answers version basic operation"),
-        (["python3", "-m", "practice.src.main", "add", "2", "3"], "Practice version basic operation"),
+        (
+            ["python3", "-m", "practice.src.main", "add", "2", "3"],
+            "Practice version basic operation",
+        ),
     ]
 
     all_good = True

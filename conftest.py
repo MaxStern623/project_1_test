@@ -4,6 +4,7 @@ Pytest configuration for the defensive programming calculator project.
 This file ensures that the answers and practice packages can be imported
 in the test environment by adding the project root to the Python path.
 """
+
 import sys
 from pathlib import Path
 

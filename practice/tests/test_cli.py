@@ -14,10 +14,13 @@ import pytest
 # TODO: Update this import when you implement the main module
 try:
     from src.main import main
+
     MAIN_IMPLEMENTED = True
 except ImportError:
+
     def main(argv=None):
         return 0  # Placeholder
+
     MAIN_IMPLEMENTED = False
 
 
@@ -88,7 +91,10 @@ class TestCLIInputValidation:
         """Test handling of special float values (inf, nan)."""
         code, out, err = run_cli(["add", invalid_input, "1"])
         # Should be handled as input error (exit code 1)
-        assert code in [1, 4], f"Special value {invalid_input} should be handled with appropriate exit code"
+        assert code in [
+            1,
+            4,
+        ], f"Special value {invalid_input} should be handled with appropriate exit code"
 
     @pytest.mark.skipif(not MAIN_IMPLEMENTED, reason="Main module not yet implemented")
     def test_empty_arguments(self):

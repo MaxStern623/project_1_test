@@ -45,20 +45,20 @@ def _validate_input(value: Number, param_name: str) -> None:
     if not isinstance(value, (int, float)):
         raise InvalidInputError(
             f"Parameter '{param_name}' must be a number",
-            {"value": value, "type": type(value).__name__}
+            {"value": value, "type": type(value).__name__},
         )
 
     # Check for NaN or infinity (EAFP wouldn't work well here)
     if math.isnan(value):
         raise InvalidInputError(
             f"Parameter '{param_name}' cannot be NaN",
-            {"value": value, "param": param_name}
+            {"value": value, "param": param_name},
         )
 
     if math.isinf(value):
         raise InvalidInputError(
             f"Parameter '{param_name}' cannot be infinite",
-            {"value": value, "param": param_name}
+            {"value": value, "param": param_name},
         )
 
 
@@ -78,14 +78,14 @@ def _check_overflow(result: float, operation: str, a: Number, b: Number) -> None
         logger.error(f"Overflow in {operation}: {a} and {b} -> {result}")
         raise OverflowError(
             f"Result overflow in {operation}",
-            {"operation": operation, "operands": [a, b], "result": result}
+            {"operation": operation, "operands": [a, b], "result": result},
         )
 
     if result != 0 and abs(result) < EPSILON:
         logger.warning(f"Potential underflow in {operation}: {a} and {b} -> {result}")
         raise UnderflowError(
             f"Result underflow in {operation}",
-            {"operation": operation, "operands": [a, b], "result": result}
+            {"operation": operation, "operands": [a, b], "result": result},
         )
 
 
@@ -291,17 +291,14 @@ def divide(a: Number, b: Number) -> float:
     # Check for division by zero (LBYL approach - we must check this)
     if b == 0:
         logger.error(f"Division by zero attempted: {a} / {b}")
-        raise DivisionByZeroError(
-            "Cannot divide by zero",
-            {"dividend": a, "divisor": b}
-        )
+        raise DivisionByZeroError("Cannot divide by zero", {"dividend": a, "divisor": b})
 
     # Additional check for very small divisors that might cause overflow
     if abs(b) < EPSILON:
         logger.warning(f"Division by very small number: {a} / {b}")
         raise DivisionByZeroError(
             "Cannot divide by number too close to zero",
-            {"dividend": a, "divisor": b, "threshold": EPSILON}
+            {"dividend": a, "divisor": b, "threshold": EPSILON},
         )
 
     logger.debug(f"Dividing {a} / {b}")

@@ -15,6 +15,7 @@ try:
         OverflowError,
         UnderflowError,
     )
+
     EXCEPTIONS_IMPLEMENTED = True
 except ImportError:
     # Create placeholder classes for testing
@@ -23,10 +24,18 @@ except ImportError:
             super().__init__(message)
             self.context = context or {}
 
-    class InvalidInputError(CalculatorError): pass
-    class DivisionByZeroError(CalculatorError): pass
-    class OverflowError(CalculatorError): pass
-    class UnderflowError(CalculatorError): pass
+    class InvalidInputError(CalculatorError):
+        pass
+
+    class DivisionByZeroError(CalculatorError):
+        pass
+
+    class OverflowError(CalculatorError):
+        pass
+
+    class UnderflowError(CalculatorError):
+        pass
+
     EXCEPTIONS_IMPLEMENTED = False
 
 
@@ -45,7 +54,7 @@ class TestCustomExceptions:
         error = CalculatorError("Test error with context", context)
 
         assert str(error) == "Test error with context"
-        assert hasattr(error, 'context'), "CalculatorError should have context attribute"
+        assert hasattr(error, "context"), "CalculatorError should have context attribute"
         assert error.context == context
         assert "operation" in error.context
         assert "values" in error.context
@@ -53,7 +62,7 @@ class TestCustomExceptions:
     def test_calculator_error_without_context(self):
         """Test CalculatorError without context defaults to empty dict."""
         error = CalculatorError("Test error")
-        assert hasattr(error, 'context'), "CalculatorError should have context attribute"
+        assert hasattr(error, "context"), "CalculatorError should have context attribute"
         assert error.context == {}
 
     @pytest.mark.skipif(not EXCEPTIONS_IMPLEMENTED, reason="Exceptions not yet implemented")

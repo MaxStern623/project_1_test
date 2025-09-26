@@ -6,6 +6,7 @@ This script shows how defensive programming principles are implemented in the an
 version and what needs to be implemented in the practice version.
 """
 
+
 def test_answers_version():
     """Test the complete answers version."""
     print("=" * 60)
@@ -13,8 +14,8 @@ def test_answers_version():
     print("=" * 60)
 
     try:
-        from answers.src.operations import add, divide, multiply
         from answers.src.exceptions import DivisionByZeroError, InvalidInputError
+        from answers.src.operations import add, divide, multiply
 
         # Test successful operations
         print("\n1. Successful Operations:")
@@ -41,7 +42,7 @@ def test_answers_version():
 
         # NaN rejection
         try:
-            multiply(float('nan'), 5)
+            multiply(float("nan"), 5)
         except InvalidInputError as e:
             print(f"   ✓ NaN rejection: {e}")
 
@@ -92,7 +93,7 @@ def test_practice_version():
 
         # No NaN/infinity checking
         try:
-            result = multiply(float('nan'), 5)
+            result = multiply(float("nan"), 5)
             print(f"   ✗ No NaN validation - result: {result}")
             print("   → Should reject NaN inputs with InvalidInputError")
         except Exception as e:

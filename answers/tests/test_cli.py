@@ -101,11 +101,14 @@ class TestCLIErrorHandling:
 class TestCLIInputValidation:
     """Test CLI input validation scenarios."""
 
-    @pytest.mark.parametrize("invalid_input", [
-        "inf",
-        "-inf",
-        "nan",
-    ])
+    @pytest.mark.parametrize(
+        "invalid_input",
+        [
+            "inf",
+            "-inf",
+            "nan",
+        ],
+    )
     def test_special_float_values(self, invalid_input):
         """Test that special float values are handled appropriately."""
         code, out, err = run_cli(["add", invalid_input, "1"])

@@ -2,6 +2,7 @@
 Pytest configuration for answers tests.
 Ensures answers package can be imported.
 """
+
 import sys
 from pathlib import Path
 

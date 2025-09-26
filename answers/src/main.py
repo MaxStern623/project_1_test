@@ -32,9 +32,7 @@ def setup_logging(verbose: bool = False) -> None:
     logging.basicConfig(
         level=level,
         format=format_str,
-        handlers=[
-            logging.StreamHandler(sys.stderr)
-        ]
+        handlers=[logging.StreamHandler(sys.stderr)],
     )
 
 
@@ -58,7 +56,7 @@ def validate_operation_args(a: str, b: str) -> tuple[float, float]:
         logger.error(f"Invalid number format: {e}")
         raise InvalidInputError(
             f"Arguments must be valid numbers: '{a}', '{b}'",
-            {"raw_args": [a, b], "error": str(e)}
+            {"raw_args": [a, b], "error": str(e)},
         ) from e
 
     # Additional validation happens in the operations themselves
@@ -75,19 +73,20 @@ def build_parser() -> argparse.ArgumentParser:
 
     # Global options
     parser.add_argument(
-        "--verbose", "-v",
+        "--verbose",
+        "-v",
         action="store_true",
-        help="Enable verbose logging output"
+        help="Enable verbose logging output",
     )
 
     # Subcommands
     subparsers = parser.add_subparsers(
-        dest="cmd",
-        required=True,
-        help="Available operations"
+        dest="cmd", required=True, help="Available operations"
     )
 
-    def create_operation_parser(name: str, help_text: str) -> argparse.ArgumentParser:
+    def create_operation_parser(
+        name: str, help_text: str
+    ) -> argparse.ArgumentParser:
         """Create a parser for an arithmetic operation.
 
         Args:
@@ -136,10 +135,9 @@ def execute_operation(operation_name: str, a: float, b: float) -> float:
 
     # Guard clause for operation existence
     if operation_name not in operations:
-        available_ops = ", ".join(operations.keys())
         raise InvalidInputError(
             f"Unknown operation: {operation_name}",
-            {"operation": operation_name, "available": list(operations.keys())}
+            {"operation": operation_name, "available": list(operations.keys())},
         )
 
     operation_func = operations[operation_name]
@@ -157,7 +155,7 @@ def execute_operation(operation_name: str, a: float, b: float) -> float:
         logger.error(f"Unexpected error in {operation_name}: {e}")
         raise InvalidInputError(
             f"Operation {operation_name} failed unexpectedly",
-            {"operation": operation_name, "operands": [a, b], "error": str(e)}
+            {"operation": operation_name, "operands": [a, b], "error": str(e)},
         ) from e
 
 

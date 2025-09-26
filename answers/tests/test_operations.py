@@ -9,6 +9,7 @@ Tests cover:
 """
 
 import math
+
 import pytest
 
 from answers.src.exceptions import (
@@ -24,26 +25,32 @@ class TestInputValidation:
     """Test input validation across all operations."""
 
     @pytest.mark.parametrize("operation", [add, subtract, multiply, divide])
-    @pytest.mark.parametrize("invalid_input", [
-        "string",
-        None,
-        [],
-        {},
-        complex(1, 2),
-    ])
+    @pytest.mark.parametrize(
+        "invalid_input",
+        [
+            "string",
+            None,
+            [],
+            {},
+            complex(1, 2),
+        ],
+    )
     def test_invalid_type_first_arg(self, operation, invalid_input):
         """Test that invalid types for first argument raise InvalidInputError."""
         with pytest.raises(InvalidInputError, match="must be a number"):
             operation(invalid_input, 1)
 
     @pytest.mark.parametrize("operation", [add, subtract, multiply, divide])
-    @pytest.mark.parametrize("invalid_input", [
-        "string",
-        None,
-        [],
-        {},
-        complex(1, 2),
-    ])
+    @pytest.mark.parametrize(
+        "invalid_input",
+        [
+            "string",
+            None,
+            [],
+            {},
+            complex(1, 2),
+        ],
+    )
     def test_invalid_type_second_arg(self, operation, invalid_input):
         """Test that invalid types for second argument raise InvalidInputError."""
         with pytest.raises(InvalidInputError, match="must be a number"):
@@ -53,38 +60,41 @@ class TestInputValidation:
     def test_nan_input_first_arg(self, operation):
         """Test that NaN inputs raise InvalidInputError."""
         with pytest.raises(InvalidInputError, match="cannot be NaN"):
-            operation(float('nan'), 1)
+            operation(float("nan"), 1)
 
     @pytest.mark.parametrize("operation", [add, subtract, multiply, divide])
     def test_nan_input_second_arg(self, operation):
         """Test that NaN inputs raise InvalidInputError."""
         with pytest.raises(InvalidInputError, match="cannot be NaN"):
-            operation(1, float('nan'))
+            operation(1, float("nan"))
 
     @pytest.mark.parametrize("operation", [add, subtract, multiply, divide])
     def test_infinity_input_first_arg(self, operation):
         """Test that infinite inputs raise InvalidInputError."""
         with pytest.raises(InvalidInputError, match="cannot be infinite"):
-            operation(float('inf'), 1)
+            operation(float("inf"), 1)
 
     @pytest.mark.parametrize("operation", [add, subtract, multiply, divide])
     def test_infinity_input_second_arg(self, operation):
         """Test that infinite inputs raise InvalidInputError."""
         with pytest.raises(InvalidInputError, match="cannot be infinite"):
-            operation(1, float('inf'))
+            operation(1, float("inf"))
 
 
 class TestAddOperation:
     """Test addition with comprehensive coverage."""
 
-    @pytest.mark.parametrize("a,b,expected", [
-        (0, 0, 0),
-        (2, 3, 5),
-        (-2, 3, 1),
-        (2.5, 0.5, 3.0),
-        (-5, -3, -8),
-        (1000000, 2000000, 3000000),
-    ])
+    @pytest.mark.parametrize(
+        "a,b,expected",
+        [
+            (0, 0, 0),
+            (2, 3, 5),
+            (-2, 3, 1),
+            (2.5, 0.5, 3.0),
+            (-5, -3, -8),
+            (1000000, 2000000, 3000000),
+        ],
+    )
     def test_add_valid_inputs(self, a, b, expected):
         """Test addition with valid inputs."""
         result = add(a, b)
@@ -113,13 +123,16 @@ class TestAddOperation:
 class TestSubtractOperation:
     """Test subtraction with comprehensive coverage."""
 
-    @pytest.mark.parametrize("a,b,expected", [
-        (0, 0, 0),
-        (5, 3, 2),
-        (-2, -3, 1),
-        (2.5, 0.5, 2.0),
-        (3, 5, -2),
-    ])
+    @pytest.mark.parametrize(
+        "a,b,expected",
+        [
+            (0, 0, 0),
+            (5, 3, 2),
+            (-2, -3, 1),
+            (2.5, 0.5, 2.0),
+            (3, 5, -2),
+        ],
+    )
     def test_subtract_valid_inputs(self, a, b, expected):
         """Test subtraction with valid inputs."""
         result = subtract(a, b)
@@ -135,14 +148,17 @@ class TestSubtractOperation:
 class TestMultiplyOperation:
     """Test multiplication with comprehensive coverage."""
 
-    @pytest.mark.parametrize("a,b,expected", [
-        (0, 0, 0),
-        (2, 3, 6),
-        (-2, 3, -6),
-        (2.5, 2, 5.0),
-        (1, 5, 5),
-        (5, 1, 5),
-    ])
+    @pytest.mark.parametrize(
+        "a,b,expected",
+        [
+            (0, 0, 0),
+            (2, 3, 6),
+            (-2, 3, -6),
+            (2.5, 2, 5.0),
+            (1, 5, 5),
+            (5, 1, 5),
+        ],
+    )
     def test_multiply_valid_inputs(self, a, b, expected):
         """Test multiplication with valid inputs."""
         result = multiply(a, b)
@@ -170,13 +186,16 @@ class TestMultiplyOperation:
 class TestDivideOperation:
     """Test division with comprehensive coverage."""
 
-    @pytest.mark.parametrize("a,b,expected", [
-        (6, 3, 2.0),
-        (2.5, 0.5, 5.0),
-        (-6, 3, -2.0),
-        (0, 5, 0.0),
-        (7, 2, 3.5),
-    ])
+    @pytest.mark.parametrize(
+        "a,b,expected",
+        [
+            (6, 3, 2.0),
+            (2.5, 0.5, 5.0),
+            (-6, 3, -2.0),
+            (0, 5, 0.0),
+            (7, 2, 3.5),
+        ],
+    )
     def test_divide_valid_inputs(self, a, b, expected):
         """Test division with valid inputs."""
         result = divide(a, b)
@@ -221,9 +240,9 @@ class TestErrorContexts:
             add("invalid", 5)
 
         error = exc_info.value
-        assert hasattr(error, 'context')
-        assert 'value' in error.context
-        assert 'type' in error.context
+        assert hasattr(error, "context")
+        assert "value" in error.context
+        assert "type" in error.context
 
     def test_division_by_zero_context(self):
         """Test that DivisionByZeroError includes context."""
@@ -231,11 +250,11 @@ class TestErrorContexts:
             divide(5, 0)
 
         error = exc_info.value
-        assert hasattr(error, 'context')
-        assert 'dividend' in error.context
-        assert 'divisor' in error.context
-        assert error.context['dividend'] == 5
-        assert error.context['divisor'] == 0
+        assert hasattr(error, "context")
+        assert "dividend" in error.context
+        assert "divisor" in error.context
+        assert error.context["dividend"] == 5
+        assert error.context["divisor"] == 0
 
 
 class TestContractValidation:

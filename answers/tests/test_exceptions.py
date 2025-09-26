@@ -1,6 +1,4 @@
-"""Tests for custom exceptions with defensive programming principles."""
-
-import pytest
+"""Tests for custom exception classes with defensive programming."""
 
 from answers.src.exceptions import (
     CalculatorError,

@@ -26,6 +26,7 @@ from __future__ import annotations
 # HINT: Should accept message and optional context dict
 class CalculatorError(Exception):
     """Base exception for all calculator-related errors."""
+
     # TODO: Add __init__ method that accepts message and optional context
     pass
 
@@ -34,6 +35,7 @@ class CalculatorError(Exception):
 # HINT: This should inherit from CalculatorError
 class InvalidInputError:
     """Raised when input parameters are invalid."""
+
     # TODO: Implement this exception class
     pass
 
