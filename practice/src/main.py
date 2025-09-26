@@ -48,9 +48,9 @@ def setup_logging(verbose: bool = False) -> None:
 def validate_operation_args(a: str, b: str) -> tuple[float, float]:
     """Validate and convert string arguments to floats."""
     # TODO: Try to convert strings to floats
-    # TODO: Catch ValueError and raise InvalidInputError with context
-    # TODO: Return tuple of validated float values
-    pass
+    # TODO: Raise InvalidInputError if conversion fails
+    # TODO: Return tuple of converted values
+    return (0.0, 0.0)  # Placeholder return for mypy
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -86,7 +86,7 @@ def execute_operation(operation_name: str, a: float, b: float) -> float:
     # TODO: Re-raise CalculatorError exceptions as-is
     # TODO: Wrap unexpected exceptions in InvalidInputError
 
-    pass
+    return 0.0  # Placeholder return for mypy
 
 
 def main(argv: list[str] | None = None) -> int:

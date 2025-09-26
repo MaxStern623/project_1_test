@@ -46,7 +46,7 @@
     {
       "label": "typecheck",
       "type": "shell",
-      "command": ". .venv/bin/activate && mypy answers/src practice/src",
+      "command": ". .venv/bin/activate && mypy answers/src --explicit-package-bases && mypy practice/src --explicit-package-bases",
       "problemMatcher": []
     },
     {

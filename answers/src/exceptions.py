@@ -1,16 +1,14 @@
-"""Custom exceptions for the calculator application.
-
-Following defensive programming principles, we use specific exceptions
-rather than generic ones to provide clear error communication.
-"""
+"""Custom exception classes for the calculator with defensive programming."""
 
 from __future__ import annotations
+
+from typing import Any
 
 
 class CalculatorError(Exception):
     """Base exception for all calculator-related errors."""
 
-    def __init__(self, message: str, context: dict[str, any] | None = None):
+    def __init__(self, message: str, context: dict[str, Any] | None = None):
         super().__init__(message)
         self.context = context or {}
 

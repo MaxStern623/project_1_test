@@ -13,7 +13,12 @@ import logging
 import math
 from typing import Union
 
-from ..exceptions import DivisionByZeroError, InvalidInputError, OverflowError, UnderflowError
+from ..exceptions import (
+    DivisionByZeroError,
+    InvalidInputError,
+    OverflowError,
+    UnderflowError,
+)
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -23,7 +28,7 @@ Number = Union[int, float]
 # Constants for validation
 MAX_SAFE_NUMBER = 1e308  # Close to float max
 MIN_SAFE_NUMBER = -1e308
-EPSILON = 1e-200  # For floating point comparison (very conservative)
+EPSILON = 1e-15  # For floating point comparison and division by zero check
 
 
 def _validate_input(value: Number, param_name: str) -> None:
@@ -76,7 +81,10 @@ def _check_overflow(result: float, operation: str, a: Number, b: Number) -> None
             {"operation": operation, "operands": [a, b], "result": result},
         )
 
-    if result != 0 and abs(result) < EPSILON:
+    # Check for underflow only in cases where result is unreasonably small
+    # Skip underflow checks for very small input numbers (they're expected to be small)
+    min_input = min(abs(a), abs(b)) if a != 0 and b != 0 else 0
+    if result != 0 and abs(result) < EPSILON and min_input > EPSILON:
         logger.warning(f"Potential underflow in {operation}: {a} and {b} -> {result}")
         raise UnderflowError(
             f"Result underflow in {operation}",

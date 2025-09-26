@@ -105,7 +105,7 @@ class TestCLIInputValidation:
         "invalid_input",
         [
             "inf",
-            "-inf", 
+            "-inf",
             "nan",
         ],
     )
