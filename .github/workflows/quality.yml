@@ -87,7 +87,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: mypy
-        run: mypy src
+        run: mypy answers/src practice/src
 
   tests:
     name: Tests and coverage
@@ -110,9 +110,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
+          pip install -e .
       - name: Run pytest with coverage (enforces threshold via pytest.ini)
         run: |
-          pytest --cov=src --cov-report=xml --cov-report=term-missing -q -ra
+          pytest --cov=answers.src --cov=practice.src --cov-report=xml --cov-report=term-missing -q -ra
       - name: Upload coverage XML
         uses: actions/upload-artifact@v4
         with:
@@ -137,6 +138,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Bandit (code scan)
-        run: bandit -q -r src -x tests
+        run: bandit -q -r answers/src practice/src -x tests
       - name: pip-audit (dependencies)
         run: pip-audit -r requirements.txt || true
