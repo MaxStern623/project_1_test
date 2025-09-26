@@ -124,7 +124,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         # TODO: Replace with actual argument parsing
-        # args = argparse.Namespace() 
+        # args = argparse.Namespace()
 
         # TODO: Add your implementation here
 

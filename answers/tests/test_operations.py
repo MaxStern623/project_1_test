@@ -12,12 +12,7 @@ import math
 
 import pytest
 
-from answers.src.exceptions import (
-    DivisionByZeroError,
-    InvalidInputError,
-    OverflowError,
-    UnderflowError,
-)
+from answers.src.exceptions import DivisionByZeroError, InvalidInputError
 from answers.src.operations import add, divide, multiply, subtract
 
 
@@ -292,8 +287,8 @@ class TestEdgeCases:
         """Test operations with very large numbers."""
         large_num = 1e100
 
-        # Should work for addition
-        result = add(large_num, 1)
+        # Should work for addition (but 1e100 + 1 == 1e100 due to float precision)
+        result = add(large_num, large_num)
         assert result > large_num
 
         # Should work for multiplication

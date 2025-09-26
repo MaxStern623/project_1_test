@@ -7,7 +7,7 @@ name = "defensive-programming-calculator"
 version = "1.0.0"
 description = "A1 Defensive Programming Calculator - Complete and practice implementations"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 keywords = ["defensive-programming", "calculator", "education", "error-handling"]
 
 [project.scripts]

@@ -105,15 +105,20 @@ class TestCLIInputValidation:
         "invalid_input",
         [
             "inf",
-            "-inf",
+            "-inf", 
             "nan",
         ],
     )
     def test_special_float_values(self, invalid_input):
         """Test that special float values are handled appropriately."""
         code, out, err = run_cli(["add", invalid_input, "1"])
-        assert code == 1  # Should be input error
-        assert "Input Error:" in err
+        # -inf triggers argparse error (code 2), others trigger validation error (code 1)
+        if invalid_input == "-inf":
+            assert code == 2  # argparse error for negative-like option
+            assert "error:" in err
+        else:
+            assert code == 1  # Should be input error
+            assert "Input Error:" in err
 
     def test_very_large_numbers(self):
         """Test CLI with very large numbers."""
