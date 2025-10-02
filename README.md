@@ -66,25 +66,30 @@ pytest tests/ -v
 
 ```bash
 # See the current incomplete state
-python3 -m practice.src.main add 2 3  # Returns: 0 (placeholder)
+python3 -m src.main add 2 3  # Returns: 0 (placeholder)
 
 # Run tests to see what needs implementation
-pytest practice/tests/ -v
+pytest tests/ -v
 
-# Follow the TODOs in practice/src/ to implement defensive programming
-# See DEFENSIVE_PROGRAMMING_README.md for detailed guidance
+# Follow the TODOs in src/ to implement defensive programming
+# Use resources/guides/ for step-by-step instructions
 ```
 
-### Compare Implementations
+### Reference Implementation
 
 ```bash
+# See complete implementation
+cd resources/examples/complete_implementation/
+python3 -m main add 2 3
+
+# Compare with your implementation
 # Run side-by-side comparison
 python3 demo_differences.py
 ```
 
 ## 🛡️ Defensive Programming Features Demonstrated
 
-### ✅ Complete Implementation (answers/)
+### ✅ Complete Implementation
 
 - **🔒 Input Validation**: Rejects invalid types, NaN, infinity with custom exceptions
 - **� Custom Exception Hierarchy**: `CalculatorError` → `InvalidInputError`, `DivisionByZeroError`, etc.
@@ -203,10 +208,10 @@ After mastering defensive programming here:
 
 ```bash
 # Test the complete implementation
-pytest answers/tests/ -v
+pytest tests/ -v
 
 # Test your practice implementation
-pytest practice/tests/ -v
+pytest tests/ -v
 
 # Run quality checks
 make qa
@@ -280,7 +285,7 @@ cd /path/to/Project_test
 python3 -m answers.src.main add 2 3    # Use full module path
 
 # Run specific tests
-pytest answers/tests/test_operations.py::TestAddOperation -v
+pytest tests/test_operations.py::TestAddOperation -v
 
 # Check error handling
 python3 -m answers.src.main divide 5 0  # Should exit with code 2
@@ -313,7 +318,7 @@ These patterns are essential for any Python developer working on production syst
 
 ---
 
-**🚀 Ready to master defensive programming? Start with the [complete guide](DEFENSIVE_PROGRAMMING_README.md) or jump into the [practice version](practice/)!**
+**🚀 Ready to master defensive programming? Start with the [Learning Guide](LEARNING_GUIDE.md) and build your implementation in [`src/`](src/)!**
 
 ---
 
