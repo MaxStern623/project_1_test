@@ -13,7 +13,7 @@ import logging
 import math
 from typing import Union
 
-from ..exceptions import (
+from exceptions import (
     DivisionByZeroError,
     InvalidInputError,
     OverflowError,

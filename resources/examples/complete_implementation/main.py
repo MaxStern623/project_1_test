@@ -13,8 +13,8 @@ import logging
 import sys
 from typing import Callable
 
-from .exceptions import CalculatorError, DivisionByZeroError, InvalidInputError
-from .operations import add, divide, multiply, subtract
+from exceptions import CalculatorError, DivisionByZeroError, InvalidInputError
+from operations import add, divide, multiply, subtract
 
 # Configure logging
 logger = logging.getLogger(__name__)
