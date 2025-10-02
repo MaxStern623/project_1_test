@@ -744,7 +744,7 @@ if __name__ == "__main__":  # pragma: no cover
 ```bash
 # Test each component as you implement it
 pytest tests/test_exceptions.py -v     # After implementing exceptions
-pytest tests/test_operations.py -v    # After implementing operations  
+pytest tests/test_operations.py -v    # After implementing operations
 pytest tests/test_cli.py -v           # After implementing main.py
 
 # Run all tests

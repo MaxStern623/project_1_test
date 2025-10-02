@@ -5,7 +5,7 @@ Use this checklist to ensure your code follows defensive programming principles.
 ## 📋 Input Validation
 
 - [ ] **Type Checking**: All inputs validated for correct type
-- [ ] **Range Checking**: Numeric inputs checked for valid ranges  
+- [ ] **Range Checking**: Numeric inputs checked for valid ranges
 - [ ] **Null/None Checking**: Handle null/None values appropriately
 - [ ] **Special Values**: Check for NaN, infinity, empty strings
 - [ ] **Early Validation**: Use guard clauses for immediate validation
@@ -31,7 +31,7 @@ def divide(a: float, b: float) -> float:
 ```python
 # ✅ Good exception with context
 raise InvalidInputError(
-    "Invalid number format", 
+    "Invalid number format",
     {"input": user_input, "expected": "float", "error": str(e)}
 )
 ```
@@ -47,7 +47,7 @@ raise InvalidInputError(
 if b == 0:  # Must check this first
     raise DivisionByZeroError("Cannot divide by zero")
 
-# ✅ EAFP for operations  
+# ✅ EAFP for operations
 try:
     result = complex_calculation(a, b)
 except CalculationError as e:
@@ -64,15 +64,15 @@ except CalculationError as e:
 ```python
 def add(a: Number, b: Number) -> Number:
     # Preconditions
-    _validate_input(a, "a")  
+    _validate_input(a, "a")
     _validate_input(b, "b")
-    
+
     result = a + b
-    
+
     # Postconditions
     _check_overflow(result, "addition", a, b)
     assert isinstance(result, (int, float))
-    
+
     return result
 ```
 
@@ -87,7 +87,7 @@ def add(a: Number, b: Number) -> Number:
 # ❌ Bad - exposes sensitive info
 raise DatabaseError(f"Connection failed: username={username}, password={password}")
 
-# ✅ Good - safe error message  
+# ✅ Good - safe error message
 raise DatabaseError("Database connection failed", {"attempt": attempt_count})
 ```
 
@@ -110,7 +110,7 @@ logger.error(f"Operation failed", extra={"operation": op, "inputs": sanitized_in
 - [ ] **Integration Testing**: Test error handling across modules
 - [ ] **Recovery Testing**: Test system recovery from failures
 
-## 🔄 Code Structure  
+## 🔄 Code Structure
 
 - [ ] **Single Responsibility**: Each function has one clear purpose
 - [ ] **Fail Fast**: Detect problems early and clearly
@@ -131,7 +131,7 @@ Before considering code complete, ensure:
 - [ ] All unit tests pass (including error cases)
 - [ ] Code coverage includes error paths
 - [ ] Linting and type checking pass
-- [ ] Security scanning passes  
+- [ ] Security scanning passes
 - [ ] Manual testing of error scenarios completed
 
 ---

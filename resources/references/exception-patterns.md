@@ -18,12 +18,12 @@ raise CustomError("Something went wrong")
 ```python
 class EnhancedError(Exception):
     """Exception with debugging context."""
-    
+
     def __init__(self, message: str, context: dict[str, Any] | None = None):
         super().__init__(message)
         self.context = context or {}
 
-# Usage  
+# Usage
 raise EnhancedError(
     "Operation failed",
     {"input": user_data, "step": "validation", "attempt": 3}
@@ -59,13 +59,13 @@ def validate_input(value: Any, name: str) -> None:
     """Validate input with clear error messages."""
     if value is None:
         raise ValueError(f"{name} cannot be None")
-    
+
     if not isinstance(value, (int, float)):
         raise TypeError(
             f"{name} must be numeric, got {type(value).__name__}",
             {"value": value, "expected_types": ["int", "float"]}
         )
-    
+
     if math.isnan(value):
         raise ValueError(f"{name} cannot be NaN")
 ```
@@ -78,7 +78,7 @@ def process_data(data: str) -> ProcessedData:
         parsed = json.loads(data)
     except json.JSONDecodeError as e:
         raise ValidationError("Invalid JSON format") from e
-    
+
     try:
         return ProcessedData(parsed)
     except KeyError as e:
@@ -92,18 +92,18 @@ def service_operation(request: Request) -> Response:
     try:
         # Main business logic
         validated = validate_request(request)
-        processed = process_request(validated) 
+        processed = process_request(validated)
         result = finalize_result(processed)
         return Response(result)
-        
+
     except ValidationError as e:
         logger.warning(f"Validation failed: {e}")
         return ErrorResponse("Invalid request", status=400)
-        
+
     except ProcessingError as e:
         logger.error(f"Processing failed: {e}")
         return ErrorResponse("Processing failed", status=500)
-        
+
     except Exception as e:
         logger.critical(f"Unexpected error: {e}", exc_info=True)
         return ErrorResponse("Internal error", status=500)
@@ -121,7 +121,7 @@ def retry_operation(operation: Callable, max_attempts: int = 3) -> Any:
         except RetryableError as e:
             if attempt == max_attempts - 1:
                 raise FinalError(f"Failed after {max_attempts} attempts") from e
-            
+
             sleep_time = 2 ** attempt  # Exponential backoff
             time.sleep(sleep_time)
             logger.warning(f"Attempt {attempt + 1} failed, retrying in {sleep_time}s")
@@ -131,35 +131,35 @@ def retry_operation(operation: Callable, max_attempts: int = 3) -> Any:
 ```python
 class CircuitBreaker:
     """Circuit breaker for failing operations."""
-    
+
     def __init__(self, failure_threshold: int = 5, reset_timeout: int = 60):
         self.failure_threshold = failure_threshold
         self.reset_timeout = reset_timeout
         self.failure_count = 0
         self.last_failure_time = None
         self.state = "closed"  # closed, open, half-open
-    
+
     def call(self, operation: Callable) -> Any:
         if self.state == "open":
             if time.time() - self.last_failure_time > self.reset_timeout:
                 self.state = "half-open"
             else:
                 raise CircuitOpenError("Circuit breaker is open")
-        
+
         try:
             result = operation()
             if self.state == "half-open":
                 self.state = "closed"
                 self.failure_count = 0
             return result
-            
+
         except Exception as e:
             self.failure_count += 1
             self.last_failure_time = time.time()
-            
+
             if self.failure_count >= self.failure_threshold:
                 self.state = "open"
-            
+
             raise
 ```
 
@@ -175,7 +175,7 @@ def log_error(error: Exception, context: dict[str, Any] | None = None) -> None:
         "context": context or {},
         "traceback": traceback.format_exc()
     }
-    
+
     if isinstance(error, ValidationError):
         logger.warning("Validation error occurred", extra=error_info)
     elif isinstance(error, ProcessingError):
@@ -188,25 +188,25 @@ def log_error(error: Exception, context: dict[str, Any] | None = None) -> None:
 ```python
 class ErrorTracker:
     """Track error metrics for monitoring."""
-    
+
     def __init__(self):
         self.error_counts = defaultdict(int)
         self.error_rates = defaultdict(list)
-    
+
     def record_error(self, error: Exception) -> None:
         """Record error for metrics."""
         error_type = type(error).__name__
         timestamp = time.time()
-        
+
         self.error_counts[error_type] += 1
         self.error_rates[error_type].append(timestamp)
-        
+
         # Clean old entries (keep last hour)
         cutoff = timestamp - 3600
         self.error_rates[error_type] = [
             t for t in self.error_rates[error_type] if t > cutoff
         ]
-    
+
     def get_error_rate(self, error_type: str, window_seconds: int = 300) -> float:
         """Get error rate for the given window."""
         cutoff = time.time() - window_seconds
@@ -224,7 +224,7 @@ def test_validation_error():
     """Test that validation raises appropriate error."""
     with pytest.raises(ValidationError) as exc_info:
         validate_input("invalid", "number")
-    
+
     assert "must be numeric" in str(exc_info.value)
     assert exc_info.value.context["expected_types"] == ["int", "float"]
 ```
@@ -242,16 +242,16 @@ def test_exception_context():
         assert e.context["input"] == "bad_input"
 ```
 
-### Mock Exception Testing  
+### Mock Exception Testing
 ```python
 @patch('module.external_service')
 def test_error_handling(mock_service):
     """Test error handling with mocked failures."""
     mock_service.side_effect = ConnectionError("Network failed")
-    
+
     with pytest.raises(ServiceError) as exc_info:
         call_external_service()
-    
+
     assert "Network failed" in str(exc_info.value.__cause__)
 ```
 
@@ -259,6 +259,6 @@ def test_error_handling(mock_service):
 
 ## 🔗 See Also
 
-- **[Defensive Programming Checklist](defensive-checklist.md)**  
+- **[Defensive Programming Checklist](defensive-checklist.md)**
 - **[EAFP vs LBYL Guide](eafp-vs-lbyl.md)**
 - **[Python Exception Docs](https://docs.python.org/3/library/exceptions.html)**

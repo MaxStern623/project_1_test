@@ -146,8 +146,7 @@ COURSE_OUTLINE_VISION.md
 ENHANCED_COURSE_VISION.md
 
 # Old source directories (if they get recreated)
-/src/
-/tests/
+# Removed /src/ and /tests/ - these are now the main learning directories
 
 # Temporary files and backups
 *.tmp

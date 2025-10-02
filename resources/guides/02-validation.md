@@ -21,8 +21,8 @@ def _validate_input(value: Number, param_name: str) -> None:
     # Guard clause - check type first
     if not isinstance(value, (int, float)):
         raise InvalidInputError(f"Parameter '{param_name}' must be a number")
-    
-    # Guard clause - check for NaN  
+
+    # Guard clause - check for NaN
     if math.isnan(value):
         raise InvalidInputError(f"Parameter '{param_name}' cannot be NaN")
 ```
@@ -46,7 +46,7 @@ def safe_operation(a, b):
 ### Input Validation Pyramid
 ```
 1. Type Check     ← Guard clause (LBYL)
-2. Range Check    ← Guard clause (LBYL)  
+2. Range Check    ← Guard clause (LBYL)
 3. Special Values ← Guard clause (LBYL)
 4. Business Logic ← EAFP for operations
 ```
@@ -55,24 +55,24 @@ def safe_operation(a, b):
 ```python
 def _validate_input(value: Number, param_name: str) -> None:
     """Validate a single input parameter."""
-    
+
     # Type validation (LBYL - must check this)
     if not isinstance(value, (int, float)):
         raise InvalidInputError(
             f"Parameter '{param_name}' must be a number",
             {"value": value, "type": type(value).__name__}
         )
-    
+
     # Special value validation (LBYL - dangerous values)
     if math.isnan(value):
         raise InvalidInputError(
             f"Parameter '{param_name}' cannot be NaN",
             {"value": value, "param": param_name}
         )
-    
+
     if math.isinf(value):
         raise InvalidInputError(
-            f"Parameter '{param_name}' cannot be infinite", 
+            f"Parameter '{param_name}' cannot be infinite",
             {"value": value, "param": param_name}
         )
 ```
@@ -90,11 +90,11 @@ from ..exceptions import InvalidInputError, OverflowError, UnderflowError
 ### Step 2: Implement `_validate_input()` (15 minutes)
 This function should:
 - Check if the value is a number (int or float)
-- Reject NaN values  
+- Reject NaN values
 - Reject infinite values
 - Provide clear error messages with context
 
-### Step 3: Implement `_check_overflow()` (10 minutes) 
+### Step 3: Implement `_check_overflow()` (10 minutes)
 This function should:
 - Check if result is infinite (overflow)
 - Check if result is unreasonably small (underflow)
@@ -124,7 +124,7 @@ import math
 
 # These should raise InvalidInputError
 add("string", 5)           # Wrong type
-add(math.nan, 5)          # NaN value  
+add(math.nan, 5)          # NaN value
 add(math.inf, 5)          # Infinite value
 add(None, 5)              # None type
 
@@ -143,7 +143,7 @@ add(1e100, 1e100)         # Large numbers (if no overflow)
 except Exception:
     # This hides bugs!
 
-# ✅ Solution: Be specific  
+# ✅ Solution: Be specific
 except (TypeError, ValueError) as e:
     raise InvalidInputError(f"Conversion failed: {e}")
 ```
@@ -159,7 +159,7 @@ if math.isnan(value):                    # Then special values
 # ❌ Wrong order
 if math.isnan(value):                    # This crashes on strings!
     raise InvalidInputError(...)
-if not isinstance(value, (int, float)): 
+if not isinstance(value, (int, float)):
     raise InvalidInputError(...)
 ```
 
@@ -172,7 +172,7 @@ if not isinstance(value, (int, float)):
 ## ✅ Success Criteria
 
 - [ ] `_validate_input()` checks type, NaN, and infinity
-- [ ] `_check_overflow()` detects mathematical overflows  
+- [ ] `_check_overflow()` detects mathematical overflows
 - [ ] All validation tests pass
 - [ ] Error messages include helpful context
 - [ ] Code uses appropriate LBYL vs EAFP strategies

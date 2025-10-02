@@ -104,7 +104,7 @@ Your implementation lives in [`src/`](src/) - it's mostly skeleton code with TOD
 ### 📖 Comprehensive Guides
 - **[LEARNING_GUIDE.md](LEARNING_GUIDE.md)** - Your roadmap to success
 - **[Exception Design](resources/guides/01-exceptions.md)** - Building robust error handling
-- **[Input Validation](resources/guides/02-validation.md)** - Defending against bad data  
+- **[Input Validation](resources/guides/02-validation.md)** - Defending against bad data
 - **[Error-Safe Operations](resources/guides/03-operations.md)** - Bulletproof arithmetic
 - **[CLI Design](resources/guides/04-cli.md)** - Professional command-line interfaces
 
@@ -138,7 +138,7 @@ By completing this project, you'll master:
 
 ### 🔧 **Professional Development Skills**
 - **Test-Driven Development** - Writing tests that guide implementation
-- **Code Quality Tools** - Linting, formatting, type checking, security scanning  
+- **Code Quality Tools** - Linting, formatting, type checking, security scanning
 - **CLI Design** - Argument parsing, exit codes, help systems
 - **Documentation** - Clear docstrings and user guides
 
@@ -152,7 +152,7 @@ make qa
 
 # Individual tools
 pytest tests/              # Test suite with coverage
-mypy src/                  # Static type checking  
+mypy src/                  # Static type checking
 flake8 src/                # Code style linting
 black src/                 # Automatic formatting
 bandit src/                # Security vulnerability scanning
@@ -169,7 +169,7 @@ bandit src/                # Security vulnerability scanning
 
 ### When You're Stuck
 1. **Check the guides** in [`resources/guides/`](resources/guides/)
-2. **Look at examples** in [`resources/examples/`](resources/examples/)  
+2. **Look at examples** in [`resources/examples/`](resources/examples/)
 3. **Read the tests** - they show exactly what's expected
 4. **Use the debugger** - VS Code debug configurations are included
 
@@ -181,7 +181,7 @@ bandit src/                # Security vulnerability scanning
 
 ### External Resources
 - **[Python Exception Documentation](https://docs.python.org/3/tutorial/errors.html)**
-- **[Real Python: Exception Handling](https://realpython.com/python-exceptions/)**  
+- **[Real Python: Exception Handling](https://realpython.com/python-exceptions/)**
 - **[Clean Code Principles](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29)**
 - **[PEP 8: Style Guide](https://www.python.org/dev/peps/pep-0008/)**
 
@@ -342,7 +342,7 @@ This project demonstrates professional Python development practices through a fo
 
 - **[Complete Textbook](docs/index.md)** - Professional Python development from setup to CI
 - **[Quick Start](docs/02-setup.md)** - Get running in 5 minutes
-- **[Testing Guide](docs/05-testing.md)** - Comprehensive testing strategies  
+- **[Testing Guide](docs/05-testing.md)** - Comprehensive testing strategies
 - **[VS Code Setup](docs/09-vscode.md)** - Professional development environment
 - **[CI/CD Guide](docs/08-ci.md)** - Automated quality checks
 

@@ -1,6 +1,6 @@
 # 🐍 EAFP vs LBYL - Python's Approach to Error Handling
 
-> **EAFP**: "Easier to Ask for Forgiveness than Permission"  
+> **EAFP**: "Easier to Ask for Forgiveness than Permission"
 > **LBYL**: "Look Before You Leap"
 
 ## 🎯 Quick Decision Guide
@@ -159,7 +159,7 @@ def safe_divide(a: float, b: float) -> float:
         raise TypeError("b must be numeric")
     if b == 0:
         raise DivisionByZeroError("Cannot divide by zero")
-    
+
     # EAFP for the operation (handles unexpected math errors)
     try:
         result = a / b
@@ -179,7 +179,7 @@ def process_user_data(data: dict) -> ProcessedData:
         raise ValueError("Missing required field: id")
     if 'name' not in data:
         raise ValueError("Missing required field: name")
-    
+
     # EAFP for processing (complex operations)
     try:
         validated = validate_data(data)
@@ -202,7 +202,7 @@ def eafp_approach(items):
         except ProcessingError:
             handle_error(item)
 
-# LBYL is faster when failure is common (>10%)  
+# LBYL is faster when failure is common (>10%)
 def lbyl_approach(items):
     for item in items:
         if can_process(item):  # Quick check

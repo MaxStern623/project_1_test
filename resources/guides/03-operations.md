@@ -13,7 +13,7 @@
 
 Implement the four arithmetic functions in [`src/operations/__init__.py`](../../src/operations/__init__.py):
 - `add(a, b)` - Addition with overflow checking
-- `subtract(a, b)` - Subtraction with overflow checking  
+- `subtract(a, b)` - Subtraction with overflow checking
 - `multiply(a, b)` - Multiplication with special case optimization
 - `divide(a, b)` - Division with comprehensive zero checking
 
@@ -23,27 +23,27 @@ Each operation follows this pattern:
 ```python
 def operation(a: Number, b: Number) -> Number:
     """Operation with contracts."""
-    
+
     # 1. PRECONDITIONS (validate inputs)
     _validate_input(a, "a")
-    _validate_input(b, "b") 
-    
+    _validate_input(b, "b")
+
     # 2. OPERATION-SPECIFIC CHECKS
     if operation == "divide" and b == 0:
         raise DivisionByZeroError(...)
-    
+
     # 3. PERFORM OPERATION (with EAFP error handling)
     try:
         result = a + b  # or -, *, /
     except Exception as e:
         raise InvalidInputError(f"Operation failed: {e}")
-    
+
     # 4. POSTCONDITIONS (validate result)
     _check_overflow(result, "addition", a, b)
-    
+
     # 5. ASSERTIONS (invariants that should always hold)
     assert isinstance(result, (int, float))
-    
+
     return result
 ```
 
@@ -55,15 +55,15 @@ def multiply(a: Number, b: Number) -> Number:
     # Preconditions
     _validate_input(a, "a")
     _validate_input(b, "b")
-    
+
     # Early returns for special cases (optimization + clarity)
     if a == 0 or b == 0:
         return 0
     if a == 1:
         return b
-    if b == 1:  
+    if b == 1:
         return a
-    
+
     # General case
     result = a * b
     _check_overflow(result, "multiplication", a, b)
@@ -76,21 +76,21 @@ def divide(a: Number, b: Number) -> float:
     # Preconditions
     _validate_input(a, "a")
     _validate_input(b, "b")
-    
+
     # Division-specific validation
     if b == 0:
         raise DivisionByZeroError("Cannot divide by zero")
-    
+
     if abs(b) < EPSILON:  # Very small number
         raise DivisionByZeroError("Cannot divide by number too close to zero")
-    
+
     # Special case: 0 divided by anything is 0
     if a == 0:
         return 0.0
-    
+
     result = a / b
     _check_overflow(result, "division", a, b)
-    
+
     # Division always returns float
     return float(result)
 ```
@@ -113,7 +113,7 @@ def add(a: Number, b: Number) -> Number:
 ### Step 2: Subtract Function (5 minutes)
 Similar to add, but with `a - b`.
 
-### Step 3: Multiply Function (10 minutes) 
+### Step 3: Multiply Function (10 minutes)
 Include the special case optimizations shown above.
 
 ### Step 4: Divide Function (15 minutes)
@@ -129,7 +129,7 @@ pytest tests/test_operations.py::TestDivision -v
 python3 -c "
 from src.operations import add, divide
 print(add(2, 3))      # Should work
-print(divide(6, 3))   # Should work  
+print(divide(6, 3))   # Should work
 divide(1, 0)          # Should raise DivisionByZeroError
 "
 ```
@@ -142,7 +142,7 @@ divide(1, 0)          # Should raise DivisionByZeroError
 add(1e308, 1e308)         # May overflow
 multiply(1e200, 1e200)    # Definitely overflows
 
-# Division edge cases  
+# Division edge cases
 divide(1, 0)              # Zero division
 divide(1, 1e-16)          # Very small divisor
 divide(0, 5)              # Zero dividend (should return 0.0)
@@ -173,7 +173,7 @@ from src.operations import add, subtract, multiply, divide
 
 # Basic functionality
 assert add(2, 3) == 5
-assert subtract(5, 3) == 2  
+assert subtract(5, 3) == 2
 assert multiply(2, 3) == 6
 assert divide(6, 3) == 2.0
 

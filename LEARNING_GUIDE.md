@@ -6,7 +6,7 @@ Welcome to your journey into **defensive programming**! This guide will walk you
 
 ### Phase 1: Understanding the Foundation (30 minutes)
 1. **Read the Theory** → [`docs/00-mindset-history.md`](docs/00-mindset-history.md)
-2. **Understand Project Structure** → [`docs/03-structure.md`](docs/03-structure.md)  
+2. **Understand Project Structure** → [`docs/03-structure.md`](docs/03-structure.md)
 3. **Set Up Your Environment** → [`docs/02-setup.md`](docs/02-setup.md)
 
 ### Phase 2: Hands-On Implementation (2-3 hours)
@@ -65,7 +65,7 @@ Each guide in [`resources/guides/`](resources/guides/) builds on the previous on
 You'll know you're making progress when:
 
 - ✅ **Tests Pass**: `pytest tests/` shows green
-- ✅ **Type Checking**: `mypy src/` finds no issues  
+- ✅ **Type Checking**: `mypy src/` finds no issues
 - ✅ **Quality Gates**: `make qa` passes all checks
 - ✅ **CLI Works**: `python3 -m src.main add 2 3` outputs `5`
 - ✅ **Error Handling**: `python3 -m src.main divide 1 0` shows clear error message
@@ -74,7 +74,7 @@ You'll know you're making progress when:
 
 ### When You're Stuck
 1. **Check the Solutions**: [`resources/references/complete-solutions.md`](resources/references/complete-solutions.md) - All answers in one place
-2. **Read the Guide**: Each guide has troubleshooting sections  
+2. **Read the Guide**: Each guide has troubleshooting sections
 3. **Run Tests**: `pytest tests/test_operations.py::TestAddition -v` for specific feedback
 4. **Compare with Examples**: [`resources/examples/complete_implementation/`](resources/examples/complete_implementation/)
 5. **Use the Debugger**: VS Code debug configurations are set up

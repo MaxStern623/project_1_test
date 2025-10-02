@@ -5,7 +5,7 @@
 ## 🎯 What You'll Learn
 
 - **Exception Hierarchy Design** - When to inherit vs create new classes
-- **Context-Rich Error Messages** - Providing debugging info without data leakage  
+- **Context-Rich Error Messages** - Providing debugging info without data leakage
 - **Python Exception Conventions** - Following community standards
 - **Defensive Error Design** - Preventing information disclosure
 
@@ -26,7 +26,7 @@ class CalculatorError(Exception):
 ### Specific Exception Types
 
 1. **`InvalidInputError`** - For bad user input (wrong types, NaN, infinity)
-2. **`DivisionByZeroError`** - For mathematical impossibilities  
+2. **`DivisionByZeroError`** - For mathematical impossibilities
 3. **`OverflowError`** - For results too large to represent
 4. **`UnderflowError`** - For results too small (near zero when shouldn't be)
 
@@ -50,7 +50,7 @@ raise InvalidInputError(f"Database connection failed: {db_password}")
 class CalculatorError(Exception): pass
 class InvalidInputError(CalculatorError): pass
 
-# ❌ Bad - flat structure  
+# ❌ Bad - flat structure
 class InvalidInputError(Exception): pass  # No relationship to other calculator errors
 ```
 
@@ -60,7 +60,7 @@ class InvalidInputError(Exception): pass  # No relationship to other calculator 
 ```python
 class CalculatorError(Exception):
     """Base exception for all calculator-related errors."""
-    
+
     def __init__(self, message: str, context: dict[str, Any] | None = None):
         super().__init__(message)
         self.context = context or {}
@@ -97,7 +97,7 @@ try:
 except InvalidInputError as e:
     print(e)           # The message
     print(e.context)   # The debugging context
-    
+
 # Test inheritance
 try:
     raise DivisionByZeroError("Can't divide by zero")
@@ -115,7 +115,7 @@ except CalculatorError as e:  # Should catch it!
 
 - [ ] All exception classes inherit from `CalculatorError`
 - [ ] Base class accepts both message and context
-- [ ] Context is stored as a dictionary  
+- [ ] Context is stored as a dictionary
 - [ ] Tests in `test_exceptions.py` pass
 - [ ] You can import exceptions without errors
 

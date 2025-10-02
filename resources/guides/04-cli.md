@@ -30,7 +30,7 @@ Error Handling → Exit Codes → User Messages → Logging → Clean Exit
 ```python
 # Standard Unix exit codes
 0 - Success
-1 - General input/usage errors  
+1 - General input/usage errors
 2 - Misuse of shell command (argparse errors)
 3 - Calculator-specific errors (custom)
 4 - Unexpected/internal errors
@@ -46,18 +46,18 @@ def build_parser() -> argparse.ArgumentParser:
         prog="calc",
         description="Defensive calculator with error handling"
     )
-    
+
     # Global options
     parser.add_argument("--verbose", "-v", action="store_true")
-    
+
     # Subcommands for operations
     subparsers = parser.add_subparsers(dest="cmd", required=True)
-    
+
     # Each operation gets its own subcommand
     add_parser = subparsers.add_parser("add", help="Add two numbers")
     add_parser.add_argument("a", help="First number")
     add_parser.add_argument("b", help="Second number")
-    
+
     # ... repeat for subtract, multiply, divide
     return parser
 ```
@@ -68,32 +68,32 @@ def main(argv: list[str] | None = None) -> int:
     """Main entry with proper error handling."""
     try:
         args = parser.parse_args(argv)
-        
+
         # Validate and convert arguments
         try:
             a, b = validate_operation_args(args.a, args.b)
         except InvalidInputError as e:
             print(f"Input Error: {e}", file=sys.stderr)
             return 1  # Input error exit code
-        
+
         # Execute operation
         try:
             result = execute_operation(args.cmd, a, b)
             print(result)
             return 0  # Success
-            
+
         except DivisionByZeroError as e:
             print(f"Math Error: {e}", file=sys.stderr)
             return 2  # Math error exit code
-            
+
         except CalculatorError as e:
-            print(f"Calculator Error: {e}", file=sys.stderr) 
+            print(f"Calculator Error: {e}", file=sys.stderr)
             return 3  # Calculator error exit code
-            
+
     except SystemExit as e:
         # argparse calls sys.exit() for --help or invalid syntax
         return e.code if e.code is not None else 0
-        
+
     except Exception as e:
         print(f"Internal Error: {e}", file=sys.stderr)
         return 4  # Unexpected error exit code
@@ -111,14 +111,14 @@ def validate_operation_args(a: str, b: str) -> tuple[float, float]:
             f"Arguments must be valid numbers: '{a}', '{b}'",
             {"raw_args": [a, b], "error": str(e)}
         )
-    
+
     # Additional validation for special values
     import math
     if math.isnan(val_a) or math.isinf(val_a):
         raise InvalidInputError(f"Argument 'a' cannot be {a}")
     if math.isnan(val_b) or math.isinf(val_b):
         raise InvalidInputError(f"Argument 'b' cannot be {b}")
-        
+
     return val_a, val_b
 ```
 
@@ -149,14 +149,14 @@ def execute_operation(operation_name: str, a: float, b: float) -> float:
     """Execute operation with error handling."""
     operations = {
         "add": add,
-        "subtract": subtract, 
+        "subtract": subtract,
         "multiply": multiply,
         "divide": divide
     }
-    
+
     if operation_name not in operations:
         raise InvalidInputError(f"Unknown operation: {operation_name}")
-        
+
     return operations[operation_name](a, b)
 ```
 
@@ -176,7 +176,7 @@ python3 -m src.main --verbose add 2 3 # Should show debug info
 python3 -m src.main add invalid 5     # Should show input error
 echo $?                               # Should print: 1
 
-# Math errors (exit code 2)  
+# Math errors (exit code 2)
 python3 -m src.main divide 1 0        # Should show math error
 echo $?                               # Should print: 2
 
@@ -189,12 +189,12 @@ python3 -m src.main add --help        # Should show add help
 ```bash
 # Good error messages are:
 # - Clear about what went wrong
-# - Don't expose internal details  
+# - Don't expose internal details
 # - Suggest what the user should do
 
 # Example good messages:
 Input Error: Arguments must be valid numbers: 'abc', '5'
-Math Error: Cannot divide by zero  
+Math Error: Cannot divide by zero
 Calculator Error: Result overflow in multiplication
 ```
 
@@ -245,7 +245,7 @@ pytest tests/test_cli.py -v
 
 # Test exit codes manually
 python3 -m src.main add 2 3; echo "Exit code: $?"
-python3 -m src.main divide 1 0; echo "Exit code: $?" 
+python3 -m src.main divide 1 0; echo "Exit code: $?"
 python3 -m src.main add invalid 5; echo "Exit code: $?"
 
 # Test verbose mode
@@ -257,7 +257,7 @@ python3 -m src.main --verbose add 2 3 2>&1 | grep DEBUG
 Once your CLI is working, you've built a professional-grade command-line tool! You should be able to:
 
 - ✅ Perform calculations: `calc add 2 3`
-- ✅ Handle errors gracefully with clear messages  
+- ✅ Handle errors gracefully with clear messages
 - ✅ Return proper exit codes for automation
 - ✅ Debug with `--verbose` flag
 - ✅ Get help with `--help`
