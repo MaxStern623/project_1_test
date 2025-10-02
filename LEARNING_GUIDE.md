@@ -49,9 +49,10 @@ Each guide in [`resources/guides/`](resources/guides/) builds on the previous on
 - **[EAFP vs LBYL Guide](resources/references/eafp-vs-lbyl.md)**
 
 ### Code Examples
-- **[Complete Implementation](resources/examples/complete_implementation/)** - Reference when stuck
-- **[Common Patterns](resources/examples/patterns/)** - Reusable code patterns
-- **[Error Scenarios](resources/examples/error-handling/)** - How to handle edge cases
+- **[Complete Solutions Reference](resources/references/complete-solutions.md)** - All implementations in one place
+- **[Complete Implementation](resources/examples/complete_implementation/)** - Full source code files
+- **[Common Patterns](resources/references/exception-patterns.md)** - Reusable code patterns
+- **[Defensive Programming Checklist](resources/references/defensive-checklist.md)** - Quality checklist
 
 ### External Resources
 - **[Python Official: Errors & Exceptions](https://docs.python.org/3/tutorial/errors.html)**
@@ -72,10 +73,11 @@ You'll know you're making progress when:
 ## 🆘 Getting Help
 
 ### When You're Stuck
-1. **Check the Examples**: [`resources/examples/`](resources/examples/)
-2. **Read the Guide**: Each guide has troubleshooting sections
+1. **Check the Solutions**: [`resources/references/complete-solutions.md`](resources/references/complete-solutions.md) - All answers in one place
+2. **Read the Guide**: Each guide has troubleshooting sections  
 3. **Run Tests**: `pytest tests/test_operations.py::TestAddition -v` for specific feedback
-4. **Use the Debugger**: VS Code debug configurations are set up
+4. **Compare with Examples**: [`resources/examples/complete_implementation/`](resources/examples/complete_implementation/)
+5. **Use the Debugger**: VS Code debug configurations are set up
 
 ### Common Issues
 - **Import Errors**: Make sure you're running from the project root
