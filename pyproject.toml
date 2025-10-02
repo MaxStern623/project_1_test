@@ -5,17 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "defensive-programming-calculator"
 version = "1.0.0"
-description = "A1 Defensive Programming Calculator - Complete and practice implementations"
+description = "Defensive Programming Calculator - Learning Project with Guided Implementation"
 readme = "README.md"
 requires-python = ">=3.11"
 keywords = ["defensive-programming", "calculator", "education", "error-handling"]
 
 [project.scripts]
-calc-answers = "answers.src.main:main"
-calc-practice = "practice.src.main:main"
+calc = "src.main:main"
 
 [tool.setuptools]
-packages = ["answers", "answers.src", "answers.src.operations", "practice", "practice.src", "practice.src.operations"]
+packages = ["src", "src.operations"]
 
 [tool.black]
 line-length = 100
@@ -48,7 +47,7 @@ per-file-ignores = [
 
 [tool.pylint]
 py-version = "3.10"
-ignore-paths = ["answers/tests/", "practice/tests/"]  # treat tests as leafs
+ignore-paths = ["tests/"]  # treat tests as leafs
 max-line-length = 100
 good-names = ["i","j","k","x","y","z","df","id"]
 min-similarity-lines = 6

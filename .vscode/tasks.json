@@ -40,13 +40,13 @@
     {
       "label": "coverage",
       "type": "shell",
-      "command": ". .venv/bin/activate && pytest --cov=answers.src --cov=practice.src --cov-report=xml --cov-report=term",
+      "command": ". .venv/bin/activate && pytest --cov=src --cov-report=xml --cov-report=term",
       "problemMatcher": []
     },
     {
       "label": "typecheck",
       "type": "shell",
-      "command": ". .venv/bin/activate && mypy answers/src --explicit-package-bases && mypy practice/src --explicit-package-bases",
+      "command": ". .venv/bin/activate && mypy src --explicit-package-bases",
       "problemMatcher": []
     },
     {
@@ -115,15 +115,9 @@
       }
     },
     {
-      "label": "test: answers only",
+      "label": "test: verbose",
       "type": "shell",
-      "command": ". .venv/bin/activate && pytest answers/tests/ -v",
-      "group": "test"
-    },
-    {
-      "label": "test: practice only",
-      "type": "shell",
-      "command": ". .venv/bin/activate && pytest practice/tests/ -v",
+      "command": ". .venv/bin/activate && pytest tests/ -v",
       "group": "test"
     }
   ]
