@@ -125,4 +125,4 @@ Once your exceptions are working, move to **[Input Validation →](02-validation
 
 ---
 
-💡 **Stuck?** Check the [complete implementation example](../../resources/examples/complete_implementation/exceptions.py) for reference, but try implementing it yourself first!
+💡 **Stuck?** Check the [complete implementation](../../complete_solutions/exceptions.py) for reference, but try implementing it yourself first!

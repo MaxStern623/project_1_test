@@ -41,24 +41,19 @@ Open [`src/exceptions.py`](src/exceptions.py) and follow the TODOs. This builds 
 ### Step 3: Follow the Guides
 Each guide in [`resources/guides/`](resources/guides/) builds on the previous one. Work through them in order.
 
-## 📚 Learning Resources
+## 📚 **Learning Resources**
 
-### Quick References
-- **[Python Exception Best Practices](resources/references/exception-patterns.md)**
+### 📖 **Comprehensive Guides**
+- **[Exception Design](resources/guides/01-exceptions.md)** - Building robust error handling
+- **[Input Validation](resources/guides/02-validation.md)** - Defending against bad data  
+- **[Error-Safe Operations](resources/guides/03-operations.md)** - Bulletproof arithmetic
+- **[CLI Design](resources/guides/04-cli.md)** - Professional command-line interfaces
+
+### 🔧 **Quick References**
+- **[Complete Solutions](COMPLETE_SOLUTIONS.md)** - 🏆 Full working implementations
 - **[Defensive Programming Checklist](resources/references/defensive-checklist.md)**
-- **[EAFP vs LBYL Guide](resources/references/eafp-vs-lbyl.md)**
-
-### Code Examples
-- **[Complete Solutions Reference](resources/references/complete-solutions.md)** - All implementations in one place
-- **[Complete Implementation](resources/examples/complete_implementation/)** - Full source code files
-- **[Common Patterns](resources/references/exception-patterns.md)** - Reusable code patterns
-- **[Defensive Programming Checklist](resources/references/defensive-checklist.md)** - Quality checklist
-
-### External Resources
-- **[Python Official: Errors & Exceptions](https://docs.python.org/3/tutorial/errors.html)**
-- **[Real Python: Exception Handling](https://realpython.com/python-exceptions/)**
-- **[PEP 8: Style Guide](https://www.python.org/dev/peps/pep-0008/)**
-- **[Clean Code Principles](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29)**
+- **[EAFP vs LBYL Decision Guide](resources/references/eafp-vs-lbyl.md)**
+- **[Exception Patterns Reference](resources/references/exception-patterns.md)**
 
 ## 🎯 Success Metrics
 
@@ -76,7 +71,9 @@ You'll know you're making progress when:
 1. **Check the Solutions**: [`resources/references/complete-solutions.md`](resources/references/complete-solutions.md) - All answers in one place
 2. **Read the Guide**: Each guide has troubleshooting sections
 3. **Run Tests**: `pytest tests/test_operations.py::TestAddition -v` for specific feedback
-4. **Compare with Examples**: [`resources/examples/complete_implementation/`](resources/examples/complete_implementation/)
+3. **Test Your Progress**: `pytest tests/ -v`
+4. **Compare with Examples**: [`complete_solutions/`](complete_solutions/)
+5. **Iterate and Improve**: Add logging, better error messages, edge cases
 5. **Use the Debugger**: VS Code debug configurations are set up
 
 ### Common Issues

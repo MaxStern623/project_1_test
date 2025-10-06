@@ -21,12 +21,14 @@ Project_test/
 │   ├── main.py               # CLI entry point with TODOs
 │   ├── exceptions.py         # Custom exception classes to build
 │   └── operations/           # Arithmetic operations to implement
+├── complete_solutions/        # 🏆 Reference implementation (runnable)
 ├── tests/                     # 🧪 Test suite (validates your progress)
 ├── resources/                 # 📚 Learning materials and references
-│   ├── examples/             # Code examples and patterns
+│   ├── examples/             # 📚 Focused defensive programming snippets
 │   ├── guides/               # Step-by-step tutorials
 │   └── references/           # Quick reference materials
 ├── docs/                      # 📖 Complete learning guide
+├── COMPLETE_SOLUTIONS.md      # 📖 Code reference documentation
 └── LEARNING_GUIDE.md          # 🎯 Start your journey here
 ```
 
@@ -78,9 +80,9 @@ pytest tests/ -v
 ### Reference Implementation
 
 ```bash
-# See complete implementation
-cd resources/examples/complete_implementation/
-python3 -m main add 2 3
+# See complete runnable implementation
+cd complete_solutions/
+python3 main.py add 2 3
 
 # Compare with your implementation
 # Run side-by-side comparison
@@ -114,9 +116,10 @@ Your implementation lives in [`src/`](src/) - it's mostly skeleton code with TOD
 - **[CLI Design](resources/guides/04-cli.md)** - Professional command-line interfaces
 
 ### 🔧 Quick References
+- **[Complete Solutions](COMPLETE_SOLUTIONS.md)** - 🏆 Full working implementations
+- **[Code Examples](resources/examples/)** - 📚 Focused defensive programming snippets
 - **[Defensive Programming Checklist](resources/references/defensive-checklist.md)**
 - **[EAFP vs LBYL Guide](resources/references/eafp-vs-lbyl.md)**
-- **[Code Examples](resources/examples/)**
 
 ### 📘 Complete Learning Path
 The [`docs/`](docs/) directory contains a full textbook on professional Python development:
