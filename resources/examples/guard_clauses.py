@@ -22,16 +22,16 @@ def calculate_area_good(length, width):
     # Guard clauses - validate early and return/raise early
     if not isinstance(length, (int, float)):
         raise TypeError("Length must be a number")
-    
+
     if not isinstance(width, (int, float)):
         raise TypeError("Width must be a number")
-    
+
     if length <= 0:
         raise ValueError("Length must be positive")
-    
+
     if width <= 0:
         raise ValueError("Width must be positive")
-    
+
     # Main business logic - clean and focused
     return length * width
 
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     try:
         area = calculate_area_good(5, 3)
         print(f"Area: {area}")
-        
+
         # This will raise an error
         calculate_area_good(-1, 3)
     except (TypeError, ValueError) as e:

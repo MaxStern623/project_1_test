@@ -2,7 +2,7 @@
 
 class CalculationError(Exception):
     """Base exception for calculation errors."""
-    
+
     def __init__(self, message, context=None):
         super().__init__(message)
         self.context = context or {}
@@ -26,20 +26,20 @@ def safe_divide(a, b):
             f"First argument must be a number, got {type(a).__name__}",
             {"value": a, "expected_type": "number"}
         )
-    
+
     if not isinstance(b, (int, float)):
         raise InvalidInputError(
             f"Second argument must be a number, got {type(b).__name__}",
             {"value": b, "expected_type": "number"}
         )
-    
+
     # Mathematical validation
     if b == 0:
         raise MathError(
             "Cannot divide by zero",
             {"dividend": a, "divisor": b}
         )
-    
+
     return a / b
 
 
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         (5, 0),       # Division by zero
         ("10", 2),    # Invalid type
     ]
-    
+
     for a, b in test_cases:
         try:
             result = safe_divide(a, b)

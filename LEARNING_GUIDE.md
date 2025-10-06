@@ -45,7 +45,7 @@ Each guide in [`resources/guides/`](resources/guides/) builds on the previous on
 
 ### 📖 **Comprehensive Guides**
 - **[Exception Design](resources/guides/01-exceptions.md)** - Building robust error handling
-- **[Input Validation](resources/guides/02-validation.md)** - Defending against bad data  
+- **[Input Validation](resources/guides/02-validation.md)** - Defending against bad data
 - **[Error-Safe Operations](resources/guides/03-operations.md)** - Bulletproof arithmetic
 - **[CLI Design](resources/guides/04-cli.md)** - Professional command-line interfaces
 

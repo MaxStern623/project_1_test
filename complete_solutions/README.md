@@ -26,7 +26,7 @@ python3 main.py add nan 5      # Invalid input error
 complete_solutions/
 ├── main.py              # CLI entry point with comprehensive error handling
 ├── exceptions.py        # Custom exception hierarchy with context
-├── operations/          
+├── operations/
 │   └── __init__.py     # Arithmetic operations with defensive programming
 └── README.md           # This file
 ```
@@ -100,10 +100,10 @@ def add(a: Number, b: Number) -> Number:
     # Precondition validation
     _validate_input(a, "a")
     _validate_input(b, "b")
-    
+
     # Operation
     result = a + b
-    
+
     # Postcondition validation
     _check_overflow(result, "addition", a, b)
     assert isinstance(result, (int, float))

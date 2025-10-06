@@ -74,7 +74,7 @@ class UnderflowError(CalculatorError):
 ### 🔍 **Key Concepts Demonstrated**
 
 - **Exception Hierarchy**: All inherit from `CalculatorError` for easy catching
-- **Context Storage**: `context` dict provides debugging info without data leakage  
+- **Context Storage**: `context` dict provides debugging info without data leakage
 - **Specific Exception Types**: Each error type has a clear, single responsibility
 - **Type Hints**: Proper typing with `dict[str, Any] | None` for Python 3.10+
 
@@ -738,14 +738,14 @@ if __name__ == "__main__":  # pragma: no cover
 
 ## 🎯 **Summary of Defensive Programming Principles**
 
-### 1. **Exception Hierarchy** 
+### 1. **Exception Hierarchy**
 - Custom base class (`CalculatorError`) with context preservation
 - Specific exceptions for different error types
 - No sensitive data leakage in error messages
 
 ### 2. **Design by Contract**
 - Explicit preconditions with guard clauses
-- Postcondition assertions to verify guarantees  
+- Postcondition assertions to verify guarantees
 - Invariant maintenance throughout operations
 
 ### 3. **EAFP vs LBYL Strategy**
