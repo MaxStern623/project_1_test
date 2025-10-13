@@ -1,0 +1,92 @@
+name: CI - Tests and Grading
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-grade:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+
+      - name: Run mypy (type check)
+        continue-on-error: false
+        run: |
+          mypy src --explicit-package-bases
+
+      - name: Run linters (flake8)
+        continue-on-error: false
+        run: |
+          flake8 $(git ls-files '*.py' | tr '\n' ' ')
+
+      - name: Run formatting checks (black/isort)
+        continue-on-error: false
+        run: |
+          black --check .
+          isort --check-only .
+
+      - name: Run pytest and record junit+coverage
+        continue-on-error: false
+        run: |
+          mkdir -p reports
+          pytest -q --junitxml=reports/junit.xml --cov=src --cov-report=xml:reports/coverage.xml --cov-report=term
+
+      - name: Generate grade summary
+        continue-on-error: false
+        run: |
+          python3 tools/grade_from_junit.py reports/junit.xml
+
+      - name: Upload grade summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grade-summary-${{ matrix.python-version }}
+          path: reports/grade_summary.json
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-${{ matrix.python-version }}
+          path: reports
+
+      - name: Upload coverage to Codecov
+        if: ${{ secrets.CODECOV_TOKEN != '' }}
+        uses: codecov/codecov-action@v4
+        with:
+          files: reports/coverage.xml
+          fail_ci_if_error: true
+
+  quick-smoke:
+    runs-on: ubuntu-latest
+    needs: test-and-grade
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Notify pass
+        run: echo "CI smoke job completed"

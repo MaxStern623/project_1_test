@@ -160,3 +160,9 @@ demo_*.log
 htmlcov/
 .coverage.*
 !coverage.xml
+
+# Local CI/test artifacts
+reports/
+
+# Local scripts (hooks) - optional, tracked in repo but hooks will be installed locally
+# .git/hooks/

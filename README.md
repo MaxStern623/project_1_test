@@ -220,6 +220,31 @@ pytest tests/ -v
 make qa
 ```
 
+## 🔁 Continuous Integration and Local Checks
+
+This repository includes a GitHub Actions workflow that runs on pushes and pull requests to `main`. The CI performs:
+
+- Type checking with `mypy`
+- Linting with `flake8`
+- Formatting checks with `black` and `isort`
+- Test execution with `pytest` (JUnit + coverage reports)
+- Grading summary generation (simple JSON) from pytest results
+
+To enable local checks before pushing, install the provided git hook:
+
+```bash
+# From project root
+./scripts/install_hooks.sh
+
+# This will install a pre-push hook that runs a subset of CI checks locally
+# (mypy, flake8, black/isort checks, and a fast pytest run).
+```
+
+Note: GitHub branch protection rules can be enabled in your repository settings to require the CI to pass before merging to the `main` branch. Actions cannot prevent a force-push; use branch protection to enforce checks.
+
+If you want Codecov integration, add a `CODECOV_TOKEN` secret to your repository settings and the workflow will upload coverage reports automatically.
+
+
 ## � Documentation
 
 - **[DEFENSIVE_PROGRAMMING_README.md](DEFENSIVE_PROGRAMMING_README.md)** - Complete implementation guide
