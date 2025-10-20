@@ -32,7 +32,7 @@ if __name__ == "__main__":
         print("Usage: grade_from_junit.py <junit-xml>")
         sys.exit(2)
     report = parse_junit(sys.argv[1])
-    out_path = "reports/grade_summary.json"
-    with open(out_path, "w", encoding="utf-8") as fh:
+    OUT_PATH = "reports/grade_summary.json"
+    with open(OUT_PATH, "w", encoding="utf-8") as fh:
         json.dump(report, fh, indent=2)
-    print("Wrote grading summary to", out_path)
+    print("Wrote grading summary to", OUT_PATH)

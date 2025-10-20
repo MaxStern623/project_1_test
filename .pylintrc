@@ -1,5 +1,6 @@
 [MASTER]
-ignore=venv
+ignore=venv,tests,complete_solutions,resources/examples
+init-hook='import sys; sys.path.insert(0, "./")'
 
 [MESSAGES CONTROL]
 disable=
@@ -8,6 +9,22 @@ disable=
     C0116,  # missing-function-docstring
     R0903,  # too-few-public-methods
     R0801,  # duplicate-code (not useful in tiny projects)
+    W0511,  # TODO/fixme notes in skeletons
+    W0613,  # unused-argument (common in tests/skeletons)
+    W0611,  # unused-import (tests may import exceptions from src)
+    W0107,  # unnecessary-pass (placeholder code)
+    W0621,  # redefined-outer-name (examples/tests)
+    W0718,  # broad-exception-caught (examples show patterns)
+    W1203,  # logging-fstring-interpolation (prefer lazy logging in examples)
+    C0103,  # invalid-name (examples and small scripts)
+    W0622,  # redefined-builtin (project defines exception names like OverflowError)
+    W0612,  # unused-variable (tests create tuples like code,out,err)
+    R1714,  # consider-using-in in tests
+    E0712,  # catching-non-exception (tests may reference exception names before impl)
+    C0415,  # import-outside-toplevel (examples may intentionally show local imports)
+    R0911,  # too-many-return-statements (large reference example)
+    R0912,  # too-many-branches
+    R0915,  # too-many-statements
 
 [FORMAT]
 max-line-length=100

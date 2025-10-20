@@ -71,7 +71,9 @@ class BankAccount:
         assert self._balance >= 0, "Account balance invariant violated"
 
 
-def calculate_compound_interest(principal: Number, rate: Number, time: Number, compounds_per_year: int = 1) -> float:
+def calculate_compound_interest(
+    principal: Number, rate: Number, time: Number, compounds_per_year: int = 1
+) -> float:
     """
     Calculate compound interest with Design by Contract.
 
@@ -145,10 +147,10 @@ if __name__ == "__main__":
 
     print("\n2. Compound Interest Calculations:")
     test_cases = [
-        (1000, 0.05, 10, 1),      # Valid case
-        (1000, 0.05, 10, 12),     # Monthly compounding
-        (-1000, 0.05, 10, 1),     # Invalid principal
-        (1000, -0.05, 10, 1),     # Invalid rate
+        (1000, 0.05, 10, 1),  # Valid case
+        (1000, 0.05, 10, 12),  # Monthly compounding
+        (-1000, 0.05, 10, 1),  # Invalid principal
+        (1000, -0.05, 10, 1),  # Invalid rate
     ]
 
     for principal, rate, time, compounds in test_cases:

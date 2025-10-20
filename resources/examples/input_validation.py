@@ -10,9 +10,7 @@ def validate_number(value: Any, param_name: str) -> Number:
     """Comprehensive number validation with clear error messages."""
     # Type validation
     if not isinstance(value, (int, float)):
-        raise TypeError(
-            f"Parameter '{param_name}' must be a number, got {type(value).__name__}"
-        )
+        raise TypeError(f"Parameter '{param_name}' must be a number, got {type(value).__name__}")
 
     # Special value validation
     if math.isnan(value):
@@ -40,8 +38,7 @@ def validate_range(value: Any, param_name: str, min_val: Number, max_val: Number
 
     if validated < min_val or validated > max_val:
         raise ValueError(
-            f"Parameter '{param_name}' must be between {min_val} and {max_val}, "
-            f"got {validated}"
+            f"Parameter '{param_name}' must be between {min_val} and {max_val}, " f"got {validated}"
         )
 
     return validated
@@ -79,7 +76,7 @@ if __name__ == "__main__":
         # (function, args, description)
         (calculate_circle_area, (5,), "Valid radius"),
         (calculate_circle_area, (-1,), "Negative radius"),
-        (calculate_circle_area, (float('inf'),), "Infinite radius"),
+        (calculate_circle_area, (float("inf"),), "Infinite radius"),
         (calculate_circle_area, ("5",), "String radius"),
         (calculate_percentage, (25, 100), "Valid percentage"),
         (calculate_percentage, (150, 100), "Part > total"),

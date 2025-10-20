@@ -1,5 +1,6 @@
 """Example: Exception hierarchy with context for better error handling."""
 
+
 class CalculationError(Exception):
     """Base exception for calculation errors."""
 
@@ -10,11 +11,13 @@ class CalculationError(Exception):
 
 class InvalidInputError(CalculationError):
     """Raised when input is invalid."""
+
     pass
 
 
 class MathError(CalculationError):
     """Raised when mathematical operation fails."""
+
     pass
 
 
@@ -24,21 +27,18 @@ def safe_divide(a, b):
     if not isinstance(a, (int, float)):
         raise InvalidInputError(
             f"First argument must be a number, got {type(a).__name__}",
-            {"value": a, "expected_type": "number"}
+            {"value": a, "expected_type": "number"},
         )
 
     if not isinstance(b, (int, float)):
         raise InvalidInputError(
             f"Second argument must be a number, got {type(b).__name__}",
-            {"value": b, "expected_type": "number"}
+            {"value": b, "expected_type": "number"},
         )
 
     # Mathematical validation
     if b == 0:
-        raise MathError(
-            "Cannot divide by zero",
-            {"dividend": a, "divisor": b}
-        )
+        raise MathError("Cannot divide by zero", {"dividend": a, "divisor": b})
 
     return a / b
 
@@ -46,9 +46,9 @@ def safe_divide(a, b):
 # Example usage
 if __name__ == "__main__":
     test_cases = [
-        (10, 2),      # Valid
-        (5, 0),       # Division by zero
-        ("10", 2),    # Invalid type
+        (10, 2),  # Valid
+        (5, 0),  # Division by zero
+        ("10", 2),  # Invalid type
     ]
 
     for a, b in test_cases:
@@ -57,6 +57,6 @@ if __name__ == "__main__":
             print(f"{a} / {b} = {result}")
         except CalculationError as e:
             print(f"Error: {e}")
-            if hasattr(e, 'context'):
+            if hasattr(e, "context"):
                 print(f"Context: {e.context}")
         print()  # Empty line for readability

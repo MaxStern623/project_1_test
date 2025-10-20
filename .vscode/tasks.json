@@ -29,7 +29,7 @@
     {
       "label": "lint",
       "type": "shell",
-      "command": ". .venv/bin/activate && flake8 $(git ls-files '*.py' | tr '\n' ' ') && pylint -j 0 $(git ls-files '*.py' | tr '\n' ' ')"
+      "command": ". .venv/bin/activate && flake8 $(git ls-files 'src/**/*.py' 'tests/**/*.py' 'tools/**/*.py' | tr '\n' ' ') && pylint -j 0 src tests tools"
     },
     {
       "label": "test",

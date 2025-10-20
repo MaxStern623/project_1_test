@@ -1,5 +1,6 @@
 """Example: Guard clauses for early validation and cleaner code."""
 
+
 def calculate_area_bad(length, width):
     """Bad example: nested validation creates complex code."""
     if isinstance(length, (int, float)):

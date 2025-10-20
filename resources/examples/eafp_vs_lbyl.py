@@ -19,7 +19,7 @@ def read_file_lbyl(filename):
         raise PermissionError(f"Cannot read file '{filename}'")
 
     # Now we can safely read
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         return f.read()
 
 
@@ -33,7 +33,7 @@ def read_file_eafp(filename):
 
     # Just try it - let Python tell us what's wrong
     try:
-        with open(filename, 'r') as f:
+        with open(filename, "r") as f:
             return f.read()
     except FileNotFoundError:
         raise FileNotFoundError(f"File '{filename}' does not exist")
@@ -77,7 +77,7 @@ def safe_sqrt_eafp(value):
 
 if __name__ == "__main__":
     # Test mathematical operations
-    test_values = [4, -1, float('nan'), float('inf'), "not_a_number"]
+    test_values = [4, -1, float("nan"), float("inf"), "not_a_number"]
 
     for value in test_values:
         try:

@@ -5,8 +5,7 @@ from typing import Any
 
 # Configure logging for the example
 logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
 logger = logging.getLogger(__name__)
@@ -66,7 +65,9 @@ def divide_with_context_logging(a: float, b: float) -> float:
 
         result = a / b
         logger.info("Division completed successfully")
-        logger.debug(f"Operation result magnitude: {abs(result):.2e}")  # Log magnitude, not actual values
+        logger.debug(
+            f"Operation result magnitude: {abs(result):.2e}"
+        )  # Log magnitude, not actual values
 
         return result
 

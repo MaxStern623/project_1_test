@@ -77,6 +77,29 @@ pytest tests/ -v
 # Use resources/guides/ for step-by-step instructions
 ```
 
+## ⚠️ Why tests may fail for you (expected behavior)
+
+This repository is designed as a learning exercise. The `src/` package intentionally contains skeleton code with TODOs for you to implement. Because of that, running the full test-suite against `src/` will produce failing tests until you implement the missing pieces.
+
+If you want a fully working reference, check `complete_solutions/` which contains a complete, runnable implementation you can inspect or run directly.
+
+Copyable commands to run local checks and compare implementations:
+
+```bash
+# Run tests (will fail until you implement src/)
+pytest tests/ -v
+
+# Type checking (mypy)
+mypy src --explicit-package-bases
+
+# Lint and format checks (pre-commit will run black/isort/flake8)
+. .venv/bin/activate && pre-commit run --all-files
+
+# Run the reference implementation
+python3 -m complete_solutions.main add 2 3
+```
+
+
 ### Reference Implementation
 
 ```bash
@@ -352,12 +375,12 @@ These patterns are essential for any Python developer working on production syst
 
 ## 📈 Next Steps
 
-1. **Start Learning**: Open [`docs/index.md`](docs/index.md) for the complete guide
+1. **Start Learning**: Open [`docs/INDEX.md`](docs/INDEX.md) for the complete guide
 2. **Try Exercises**: Each chapter includes hands-on activities
 3. **Build Your Version**: Fork this repo and customize it
 4. **Join the Community**: Share your progress and get help
 
-**Ready to build professional-grade Python software?** [Start your journey here →](docs/index.md)
+**Ready to build professional-grade Python software?** [Start your journey here →](docs/INDEX.md)
 
 ---
 
@@ -373,7 +396,7 @@ This project demonstrates professional Python development practices through a fo
 
 ### 📚 Complete Learning Materials
 
-- **[Complete Textbook](docs/index.md)** - Professional Python development from setup to CI
+- **[Complete Textbook](docs/INDEX.md)** - Professional Python development from setup to CI
 - **[Quick Start](docs/02-setup.md)** - Get running in 5 minutes
 - **[Testing Guide](docs/05-testing.md)** - Comprehensive testing strategies
 - **[VS Code Setup](docs/09-vscode.md)** - Professional development environment
