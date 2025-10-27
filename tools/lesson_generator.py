@@ -86,10 +86,23 @@ def generate_lesson(template: str, notes: str, model: Optional[str] = None) -> s
             from langchain import LLMChain, PromptTemplate
             from langchain.llms import OpenAI
 
+            # Richer structured prompt: ask for JSON + a markdown lesson so the output
+            # can be machine-parsed (JSON) and human-readable (Markdown). Keep temperature low
+            # for deterministic output when possible.
             prompt_text = (
-                "You are an instructional designer. Given a template and notes, "
-                "produce a short lesson in markdown with: title, learning objectives, overview, activities, and a short assessment.\n\n"
-                "Template:\n{template}\n\nNotes:\n{notes}\n\nLesson:\n"
+                "You are an expert instructional designer and experienced Python instructor."
+                " Given a project template and instructor notes, produce TWO outputs separated by a line"
+                " containing only '---OUTPUT-JSON-END---':\n\n"
+                "(1) A strict JSON object with the following top-level keys:"
+                " title (string), audience (string), estimated_duration (string), difficulty (" 
+                "\"beginner\"|\"intermediate\"|\"advanced\"), prerequisites (list of strings),"
+                " learning_objectives (list of short strings), overview (string), activities (list of objects),"
+                " assessment (list of question strings), example_solution (string, optional), references (list of strings)."
+                " The activities list items should be objects with keys: title, steps (list of strings), duration." 
+                " Ensure the JSON is parseable and contains no explanatory text outside the JSON object.\n\n"
+                "Then output (2) a human-friendly Markdown lesson with sections: Title, Learning Objectives, Overview, Suggested Activities, Short Assessment, Example Solution, References."
+                " Use the provided Template and Notes to fill these fields. Keep JSON concise and markdown clear.\n\n"
+                "Template:\n{template}\n\nNotes:\n{notes}\n\nJSON then Markdown:\n"
             )
             prompt = PromptTemplate(template=prompt_text, input_variables=["template", "notes"])
             llm = OpenAI(model_name=model or "gpt-4o-mini", temperature=0.0)
