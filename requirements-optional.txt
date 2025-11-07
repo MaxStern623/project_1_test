@@ -1,0 +1,5 @@
+# Optional dependencies for LLM features
+langchain>=0.0.200
+openai>=1.0.0
+# You may also want: tiktoken, or provider-specific packages depending on your LLM
+# Install with: pip install -r requirements-optional.txt
